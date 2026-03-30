@@ -178,7 +178,7 @@ export function CampaignCreationWizard() {
       const campaign = await createCampaign.mutateAsync({
         name: state.campaign_name,
         description: state.description,
-        campaign_type: 'enterprise_bargaining',
+        campaign_type: 'bargaining',
         organiser_id: state.organiser_id,
         start_date: state.stage_dates[0]?.planned_start || format(new Date(), 'yyyy-MM-dd'),
         agreement_id: state.agreement_id,
@@ -379,7 +379,7 @@ export function CampaignCreationWizard() {
                 <div className="text-sm text-muted-foreground">Loading organisers...</div>
               ) : (
                 <Select
-                  value={state.organiser_id?.toString()}
+                  value={state.organiser_id?.toString() ?? ''}
                   onValueChange={(v) => setState((p) => ({ ...p, organiser_id: parseInt(v) }))}
                 >
                   <SelectTrigger>
