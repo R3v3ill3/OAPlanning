@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import Link from 'next/link'
 import { useCampaigns } from '@/lib/hooks/useCampaigns'
 import { Button } from '@/components/ui/button'
@@ -121,20 +122,30 @@ export default function DashboardPage() {
 
   return (
     <div className="p-6 space-y-6">
-      {/* Header */}
-      <div className="flex items-start justify-between">
-        <div>
-          <h1 className="text-2xl font-bold text-slate-900">Dashboard</h1>
-          <p className="text-muted-foreground mt-1">
-            Overview of all enterprise bargaining campaigns
-          </p>
+      {/* Hero banner */}
+      <div className="relative overflow-hidden rounded-xl bg-slate-900 min-h-[140px]">
+        <Image
+          src="/heritage_Eurka_static.png"
+          alt=""
+          fill
+          className="object-cover object-center opacity-25"
+          priority
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-slate-900/80 via-slate-900/40 to-transparent" />
+        <div className="relative z-10 flex items-end justify-between p-6 min-h-[140px]">
+          <div>
+            <h1 className="text-2xl font-bold text-white">Dashboard</h1>
+            <p className="text-slate-300 mt-1 text-sm">
+              Overview of all enterprise bargaining campaigns
+            </p>
+          </div>
+          <Button asChild variant="secondary" className="flex-shrink-0">
+            <Link href="/campaigns/new">
+              <Plus className="h-4 w-4 mr-1" />
+              New Campaign
+            </Link>
+          </Button>
         </div>
-        <Button asChild>
-          <Link href="/campaigns/new">
-            <Plus className="h-4 w-4 mr-1" />
-            New Campaign
-          </Link>
-        </Button>
       </div>
 
       {/* Summary stats */}
@@ -211,10 +222,18 @@ export default function DashboardPage() {
             ))}
           </div>
         ) : activeCampaigns.length === 0 ? (
-          <Card className="text-center py-12">
-            <CardContent>
-              <Briefcase className="h-12 w-12 text-slate-300 mx-auto mb-3" />
-              <p className="font-medium text-slate-500">No active campaigns</p>
+          <div className="relative overflow-hidden rounded-xl border border-slate-200 bg-slate-50 text-center py-16">
+            <div className="absolute inset-0">
+              <Image
+                src="/heritage_Eurka_static.png"
+                alt=""
+                fill
+                className="object-cover object-center opacity-[0.07]"
+              />
+            </div>
+            <div className="relative z-10">
+              <Briefcase className="h-12 w-12 text-slate-400 mx-auto mb-3" />
+              <p className="font-semibold text-slate-600">No active campaigns</p>
               <p className="text-sm text-muted-foreground mt-1">Create your first campaign to get started</p>
               <Button asChild className="mt-4">
                 <Link href="/campaigns/new">
@@ -222,8 +241,8 @@ export default function DashboardPage() {
                   Create Campaign
                 </Link>
               </Button>
-            </CardContent>
-          </Card>
+            </div>
+          </div>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {activeCampaigns.map((campaign) => (

@@ -8,6 +8,10 @@ const inter = Inter({ subsets: ['latin'] })
 export const metadata: Metadata = {
   title: 'OA Campaign Strategic Planner',
   description: 'Offshore Alliance Enterprise Bargaining Campaign Planning Tool',
+  icons: {
+    icon: '/apple-touch-icon.png',
+    apple: '/apple-touch-icon.png',
+  },
 }
 
 export default function RootLayout({

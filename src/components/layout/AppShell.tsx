@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import type { User } from '@supabase/supabase-js'
@@ -83,9 +84,13 @@ export function AppShell({ children, user, profile }: AppShellProps) {
       >
         {/* Logo */}
         <div className="flex h-16 items-center gap-3 px-6 border-b border-slate-700">
-          <div className="w-8 h-8 bg-blue-600 rounded-md flex items-center justify-center flex-shrink-0">
-            <span className="text-white font-bold text-xs">OA</span>
-          </div>
+          <Image
+            src="/apple-touch-icon.png"
+            alt="Offshore Alliance"
+            width={32}
+            height={32}
+            className="rounded-md flex-shrink-0"
+          />
           <div className="min-w-0">
             <p className="text-white font-semibold text-sm truncate">Campaign Planner</p>
             <p className="text-slate-400 text-xs truncate">Offshore Alliance</p>
